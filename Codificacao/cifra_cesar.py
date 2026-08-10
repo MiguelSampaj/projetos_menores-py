@@ -1,10 +1,11 @@
-def main(text, key=1, dir=True):
+def main(text, key=1, dir=True, up=True):
     """
     Função que automatiza a criptografia usando a cifra de césar
     :param text: Texto str que será codificado
     :param key: Chave int da criptografia. Naturalmente definido como 1.
     :param dir: Parametro bool que define se a chave será aplicada da direita para esquerda ou visse versa.
     True significa da esquerda para direita e False o oposto. Naturalmente, o parametro é True.
+    :param up: Parametro bool que define se o texto codificado terá letras maiúsculas ou não.
     :return:
     """
     letras = 'abcdefghijklmnopqrstuvwxyz'
@@ -46,13 +47,13 @@ def main(text, key=1, dir=True):
             texto_codificado += ' '
 
     # Adicionando Maiúsculas
-    texto_codificado_maiusculo = texto_codificado.upper()
-    
-    for _id, letra in enumerate(text):        
-        if letra.isupper():
-            list_text_temp = list(texto_codificado)
-            list_text_temp[_id] = texto_codificado_maiusculo[_id]
-            texto_codificado = ''.join(list_text_temp)
+    if up:
+        texto_codificado_maiusculo = texto_codificado.upper()
+        
+        for _id, letra in enumerate(text):        
+            if letra.isupper():
+                list_text_temp = list(texto_codificado)
+                list_text_temp[_id] = texto_codificado_maiusculo[_id]
+                texto_codificado = ''.join(list_text_temp)
     
     return texto_codificado.strip()
-
