@@ -41,31 +41,18 @@ def main(text, key=1, dir=True):
                 diferenca_indexs = key - (len(letras) - letras.index(letra_corrigida))
                 letra_codificada = letras[diferenca_indexs]
 
-            texto_codificado += f'{letra_codificada} '
+            texto_codificado += f'{letra_codificada}'
         else:
-            texto_codificado += '| '
+            texto_codificado += ' '
 
-    for letra in text:
-        maiusculo = False
+    # Adicionando Maiúsculas
+    texto_codificado_maiusculo = texto_codificado.upper()
+    
+    for _id, letra in enumerate(text):        
+        if letra.isupper():
+            list_text_temp = list(texto_codificado)
+            list_text_temp[_id] = texto_codificado_maiusculo[_id]
+            texto_codificado = ''.join(list_text_temp)
+    
+    return texto_codificado.strip()
 
-        if letra.upper() == letra:
-            maiusculo = True
-        else:
-            maiusculo = False
-
-        if maiusculo:
-            texto_cod_temp = ''
-
-            for caracter in texto_codificado:
-                if caracter == ' ':
-                    pass
-                elif caracter == '|':
-                    texto_cod_temp += ' '
-                else:
-                    texto_cod_temp += caracter
-
-            texto_cod_temp = texto_cod_temp.capitalize()
-
-    return texto_cod_temp.strip()
-
-print(main('Bom dia! Eu gosto de maçã.', 1, False))
